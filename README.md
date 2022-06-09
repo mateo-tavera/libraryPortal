@@ -12,3 +12,8 @@ first you get the binary file:
 then you execute ir adding the framework, e.g:
 
 `./ main.exe gorilla`
+
+## The frameworks or libraries used:
+
+* [gorilla/mux](https://github.com/mateo-tavera/libraryPortal/apiGorilla)\
+* [echo](https://github.com/mateo-tavera/libraryPortal/apiEcho))\
