@@ -15,5 +15,5 @@ then you execute ir adding the framework, e.g:
 
 ## The frameworks or libraries used:
 
-* [gorilla/mux](https://github.com/mateo-tavera/libraryPortal/apiGorilla)-> `gorilla`
-* [echo](https://github.com/mateo-tavera/libraryPortal/apiEcho)-> `echo`
+* [gorilla/mux](https://github.com/mateo-tavera/libraryPortal/tree/main/apiGorilla)-> `gorilla`
+* [echo](https://github.com/mateo-tavera/libraryPortal/tree/main/apiEcho)-> `echo`
