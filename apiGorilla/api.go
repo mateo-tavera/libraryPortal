@@ -17,7 +17,7 @@ type Books struct {
 }
 
 //Schema is used for taking the params provided in the URL and use them as struct attribute
-type BooksParams struct {
+type BooksQueryParams struct {
 	From int `schema:"from"`
 	To   int `schema:"to"`
 }
@@ -28,9 +28,9 @@ var SchemaDecoder = schema.NewDecoder() //Create schema decoder
 //Get all books according to limits provided un query params
 func (a *API) GetBooks(w http.ResponseWriter, r *http.Request) {
 	//Add filter using query params
-	BookParams := &BooksParams{}
-	BookParams.To = len(BookList)
-	err := SchemaDecoder.Decode(BookParams, r.URL.Query()) //Here we take the URL params and save them in the Struct BookParams
+	BookQueryParams := &BooksQueryParams{}
+	BookQueryParams.To = len(BookList)
+	err := SchemaDecoder.Decode(BookQueryParams, r.URL.Query()) //Here we take the URL params and save them in the Struct BookParams
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -41,17 +41,17 @@ func (a *API) GetBooks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if BookParams.From > len(BookList) || BookParams.From < 0 {
+	if BookQueryParams.From > len(BookList) || BookQueryParams.From < 0 {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	if BookParams.To < 0 || BookParams.To > len(BookList) {
+	if BookQueryParams.To < 0 || BookQueryParams.To > len(BookList) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	json.NewEncoder(w).Encode(BookList[BookParams.From:BookParams.To])
+	json.NewEncoder(w).Encode(BookList[BookQueryParams.From:BookQueryParams.To])
 }
 
 //Get single book using id
