@@ -1,10 +1,9 @@
 package apiecho
 
 import (
-	"fmt"
 	"net/http"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 type API struct{}
@@ -74,8 +73,6 @@ func (a *API) GetBook(c echo.Context) error {
 	}
 
 	idBook := bookParams.Id
-
-	fmt.Println(idBook, " este es el id  del book")
 
 	if idBook-1 < 0 || idBook-1 > len(BookList)-1 {
 		return c.JSON(http.StatusBadRequest, err)

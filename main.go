@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	apiEcho "github.com/mateo-tavera/libraryPortal/apiEcho"
 	apiGorilla "github.com/mateo-tavera/libraryPortal/apiGorilla"
 )
