@@ -18,6 +18,7 @@ func (a *API) RegisterRoutes(r *mux.Router) {
 	public.HandleFunc("/book/{id}", a.GetBook).Methods(http.MethodGet)
 
 	protected.HandleFunc("/book/{id}", a.PatchBook).Methods(http.MethodPatch)
+	protected.HandleFunc("/book/{id}", a.DeleteBook).Methods(http.MethodDelete)
 	protected.HandleFunc("/books", a.CreateBook).Methods(http.MethodPost)
 
 }

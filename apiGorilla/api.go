@@ -105,3 +105,21 @@ func (a *API) PatchBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(updatedBook)
 
 }
+
+//Delete a book
+func (a *API) DeleteBook(w http.ResponseWriter, r *http.Request) {
+	idBook := mux.Vars(r)["id"]
+
+	//Look for the book
+	for index, book := range BookList {
+		if book.Isbn == idBook {
+			BookList = append(BookList[:index], BookList[index+1:]...)
+			w.WriteHeader(http.StatusOK)
+
+			break
+		}
+	}
+
+	json.NewEncoder(w).Encode(BookList)
+
+}
