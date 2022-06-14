@@ -2,6 +2,7 @@ package apigorilla
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -85,5 +86,31 @@ func (a *API) CreateBook(w http.ResponseWriter, r *http.Request) {
 
 	BookList = append(BookList, *book)
 	w.WriteHeader(http.StatusCreated)
+
+}
+
+//Update a book using PATCH
+func (a *API) UpdateBook(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	idBook := params["id"]
+
+	modifyBook := &Books{}
+	err := json.NewDecoder(r.Body).Decode(modifyBook)
+	fmt.Println(BookList)
+	fmt.Println(modifyBook)
+	fmt.Println(BookList)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	//Look for the book
+	for _, book := range BookList {
+		if idBook == book.Isbn {
+			book.Isbn = modifyBook.Isbn
+			book.Title = modifyBook.Title
+		}
+	}
 
 }
