@@ -69,7 +69,7 @@ func (a *API) GetBook(w http.ResponseWriter, r *http.Request) {
 		return
 
 	}
-
+	//TODO: if I delete something, this thing goes crazy
 	json.NewEncoder(w).Encode(BookList[idBook-1])
 }
 
@@ -115,11 +115,12 @@ func (a *API) DeleteBook(w http.ResponseWriter, r *http.Request) {
 		if book.Isbn == idBook {
 			BookList = append(BookList[:index], BookList[index+1:]...)
 			w.WriteHeader(http.StatusOK)
-
-			break
+			json.NewEncoder(w).Encode(BookList)
+			return
 		}
 	}
 
-	json.NewEncoder(w).Encode(BookList)
+	//If id is not in the book list
+	w.WriteHeader(http.StatusBadRequest)
 
 }
