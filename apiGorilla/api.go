@@ -92,12 +92,12 @@ func (a *API) CreateBook(w http.ResponseWriter, r *http.Request) {
 func (a *API) PatchBook(w http.ResponseWriter, r *http.Request) {
 	idBook := mux.Vars(r)["id"]
 
-	var updatedBook *Books
-	//Look for the book
+	var updatedBook *Books //Declare empty book
 
+	//Look for the book
 	for index, book := range BookList {
 		if idBook == book.Isbn {
-			updatedBook = &BookList[index]
+			updatedBook = &BookList[index] //Assign updated book to corresponding in book list
 			json.NewDecoder(r.Body).Decode(updatedBook)
 		}
 	}
